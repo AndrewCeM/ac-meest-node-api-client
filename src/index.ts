@@ -1,8 +1,8 @@
 const soapRequest = require("easy-soap-request");
-const { toJson } = require("xml2json");
-const jsontoxml = require("jsontoxml");
+const convert = require('xml-js');
 
 import { CreateParcelPayload, MeestApiClientOptions, RequestOptions } from "./types";
+import { xml2jsonOptions } from "./helper";
 
 const DEFAULT_REQUEST_TIMEOUT = 5000;
 
@@ -33,10 +33,10 @@ export class MeestApiClient {
             headers: _headers,
             timeout: options.timeout || this.options.timeout || DEFAULT_REQUEST_TIMEOUT
         }).then((res: any) => {
-            const response = toJson(res.response.body, { object: true });
+            const response = convert.xml2js(res.response.body, xml2jsonOptions);
             return response['soap:Envelope']['soap:Body'];
         }).catch((error: Error) => {
-            const errorResponse = toJson(error, { object: true });
+            const errorResponse = convert.xml2js(error, xml2jsonOptions);
             throw errorResponse['soap:Envelope']['soap:Body']['soap:Fault'];
         });
     }
@@ -61,7 +61,7 @@ export class MeestApiClient {
 
     createParcel = async (payload: CreateParcelPayload) => {
         const xml = `<log:createParcel>
-            <arg0>${jsontoxml(payload)}</arg0>
+            <arg0>${convert.js2xml(payload, { compact: true })}</arg0>
             <arg1>${this.options.apiKey}</arg1>
         </log:createParcel>`
 

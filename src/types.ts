@@ -47,7 +47,7 @@ interface deliveryAddress {
 }
 
 export interface CreateParcelPayload {
-    parcelNumberInternal?: string,
+    parcelNumberInternal: string,
     weight: string;
     value: string;
     summaCodEur: string;
