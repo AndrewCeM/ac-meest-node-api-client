@@ -1,6 +1,6 @@
 {
   "name": "ac-meest-node-api-client",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -15,8 +15,7 @@
   },
   "homepage": "https://github.com/AndrewCeM/ac-meest-node-api-client#readme",
   "publishConfig": {
-    "access": "restricted",
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://registry.npmjs.org/."
   },
   "dependencies": {
     "@types/node": "^14.6.0",
