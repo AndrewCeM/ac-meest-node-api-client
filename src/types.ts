@@ -58,7 +58,7 @@ export interface CreateParcelPayload {
     receiverEmail: string;
     deliveryCostEur: string;
     deliveryCostCountryValue: string;
-    parcelPositionApiBeans: ParcelPositionApiBeans;
+    parcelPositionApiBeans: ParcelPositionApiBeans[];
     recipentAddress: RecipentAddress;
     deliveryTypeEnum: string;
     deliveryAddress: deliveryAddress;
