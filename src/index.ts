@@ -1,7 +1,7 @@
 const soapRequest = require("easy-soap-request");
 const convert = require('xml-js');
 
-import { CreateParcelPayload, MeestApiClientOptions, RequestOptions } from "./types";
+import { CreateParcelPayload, GetDivisionsPayload, MeestApiClientOptions, RequestOptions } from "./types";
 import { xml2jsonOptions } from "./helper";
 
 const DEFAULT_REQUEST_TIMEOUT = 5000;
@@ -56,6 +56,17 @@ export class MeestApiClient {
         </log:findParcelById>`
         return this.request(xml, {}).then((res: any) => {
             return res['ns2:findParcelByIdResponse'].return;
+        });
+    }
+
+    getDivisions = async ({ cityIdRef, divisionType }: GetDivisionsPayload) => {
+        const xml = ` <log:searchDivisions>
+            <arg0>${cityIdRef}</arg0>
+            <arg1>${divisionType}</arg1>
+        </log:searchDivisions>`;
+
+        return this.request(xml, {}).then((res: any) => {
+            return res['ns2:searchDivisionsResponse'].return;
         });
     }
 
