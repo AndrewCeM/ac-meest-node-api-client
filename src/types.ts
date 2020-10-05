@@ -16,7 +16,7 @@ interface ParcelPositionApiBeans {
     count: string;
     countryCode: string;
     customCode: string;
-    countryValue: string;
+    countryValue?: string; // @todo check meest api - possibly removed
     name: string;
     nameUk: string;
     productEan: string;
@@ -24,7 +24,7 @@ interface ParcelPositionApiBeans {
     value: string;
     valueUah: string;
     weight: string;
-    countryCurrencyName: string;
+    countryCurrencyName?: string; // @todo check meest api - possibly removed
 }
 
 interface RecipentAddress {
@@ -57,16 +57,18 @@ export type DeliveryTypeEnum = "COURRIER" | "SERVICE_POINT" | "POSTAL_SERVICE_AP
 
 export interface CreateParcelPayload {
     parcelNumberInternal: string,
+    parcelNumber: string,
+    zaUa: string;
     weight: string;
     value: string;
     summaCodEur: string;
     summaCodUah: string;
     receiverName: string;
     currencyName: string;
-    countryValue: string;
+    countryValue?: string; // @todo check meest api - possibly removed
     receiverEmail: string;
-    deliveryCostEur: string;
-    deliveryCostCountryValue: string;
+    deliveryCostEur?: string;// @todo check meest api - possibly removed
+    deliveryCostCountryValue?: string;// @todo check meest api - possibly removed
     parcelPositionApiBeans: ParcelPositionApiBeans[];
     recipentAddress: RecipentAddress;
     deliveryTypeEnum: DeliveryTypeEnum;
