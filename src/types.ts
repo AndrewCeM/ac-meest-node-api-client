@@ -83,3 +83,8 @@ export interface GetDivisionsPayload {
     cityIdRef: string;
     divisionType: DivisionType
 }
+
+export interface GetStreetByNameAndCityIdRefPayload {
+    street: string;
+    cityIdRef: string;
+}

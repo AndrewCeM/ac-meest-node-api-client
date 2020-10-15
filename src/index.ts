@@ -1,7 +1,13 @@
 const soapRequest = require("easy-soap-request");
 const convert = require('xml-js');
 
-import { CreateParcelPayload, GetDivisionsPayload, MeestApiClientOptions, RequestOptions } from "./types";
+import {
+    CreateParcelPayload,
+    GetDivisionsPayload,
+    MeestApiClientOptions,
+    RequestOptions,
+    GetStreetByNameAndCityIdRefPayload
+} from "./types";
 import { xml2jsonOptions } from "./helper";
 
 const DEFAULT_REQUEST_TIMEOUT = 5000;
@@ -47,6 +53,17 @@ export class MeestApiClient {
         return this.request(xml, {}).then((res: any) => {
             return res['ns2:searchCityByPostCodeResponse'].return;
         });
+    }
+
+    getStreetByNameAndCityIdRef = async ({ street, cityIdRef }: GetStreetByNameAndCityIdRefPayload ) => {
+        const xml = `<log:searchStreetByNameAndCityIdRef>
+            <arg0>${cityIdRef}</arg0>
+            <arg1>${street}</arg1>
+        </log:searchStreetByNameAndCityIdRef>`;
+
+        return this.request(xml, {}).then((res: any) => {
+            return res['ns2:searchStreetByNameAndCityIdRefResponse'].return;
+        })
     }
 
     getParcelById = async (parcelId: string) => {
