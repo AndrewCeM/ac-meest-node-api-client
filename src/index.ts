@@ -47,6 +47,14 @@ export class MeestApiClient {
         });
     }
 
+    getCities = async (cityName: string) => {
+        const xml = `<log:searchCity><arg0>${cityName}</arg0></log:searchCity>`;
+
+        return this.request(xml, {}).then((res: any) => {
+            return res['ns2:searchCityResponse'].return;
+        });
+    }
+
     getCityByPostCode = async (postCode: string) => {
         const xml = `<log:searchCityByPostCode><arg0>${postCode}</arg0></log:searchCityByPostCode>`
 
