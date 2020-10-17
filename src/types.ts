@@ -32,9 +32,11 @@ interface RecipentAddress {
     cityIdRef: string;
     city: string;
     house: string;
+    apartment?: string;
     phone: string;
     country: string;
     street?: string;
+    streetIdRef: string;
     postCode?: string;
     postOffice?: string;
     notice?: string;
@@ -45,9 +47,11 @@ interface DeliveryAddress {
     cityIdRef: string;
     city: string;
     house: string;
+    apartment?: string;
     phone: string;
     country: string;
     street?: string;
+    streetIdRef: string;
     postCode?: string;
     postOffice?: string;
     notice?: string;
